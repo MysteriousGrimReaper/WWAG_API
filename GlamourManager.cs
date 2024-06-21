@@ -8,6 +8,7 @@ namespace WizGunCosmeticsAPI
 
         public static Glamour New(ItemType itemType, string itemCode, string itemName, string itemDescription)
         {
+            WizGunCosmeticsAPI.Log.LogInfo(string.Format("Adding Glamour {0}:{1}", itemType.ToString(), itemCode));
             Glamour glamour = new Glamour(itemType, itemCode, itemName, itemDescription);
             glamours.Add(glamour);
             return glamour;
