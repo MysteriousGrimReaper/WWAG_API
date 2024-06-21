@@ -1,0 +1,9 @@
+{
+  "name": "API",
+  "version_number": "1.0.0",
+  "website_url": "https://github.com/ScottWilson0903/WWAG_API",
+  "description": "API - Currently only glamours",
+  "dependencies": [
+    "BepInEx-BepInExPack-5.4.2100"
+  ]
+}
