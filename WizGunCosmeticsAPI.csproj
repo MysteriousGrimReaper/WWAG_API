@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>Libraries\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>Libraries\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>Libraries\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="GGAI">
+      <HintPath>Libraries\GGAI.dll</HintPath>
+    </Reference>
+    <Reference Include="GGDebug">
+      <HintPath>Libraries\GGDebug.dll</HintPath>
+    </Reference>
+    <Reference Include="GGECS">
+      <HintPath>Libraries\GGECS.dll</HintPath>
+    </Reference>
+    <Reference Include="GGNet">
+      <HintPath>Libraries\GGNet.dll</HintPath>
+    </Reference>
+    <Reference Include="GGPhys">
+      <HintPath>Libraries\GGPhys.dll</HintPath>
+    </Reference>
+    <Reference Include="GGPhys.Examples">
+      <HintPath>Libraries\GGPhys.Examples.dll</HintPath>
+    </Reference>
+    <Reference Include="GGUtil">
+      <HintPath>Libraries\GGUtil-Publicized.dll</HintPath>
+    </Reference>
+    <Reference Include="GGWorldGen">
+      <HintPath>Libraries\GGWorldGen.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>Libraries\Unity.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>Libraries\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>Libraries\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>Libraries\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="WizGun">
+      <HintPath>Libraries\WizGun-Publicized.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
