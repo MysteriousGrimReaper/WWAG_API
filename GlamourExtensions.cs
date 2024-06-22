@@ -28,6 +28,7 @@ namespace WizGunCosmeticsAPI
                 if (!emptySkinData.TryGetValue(name, out skinData))
                 {
                     skinData = ScriptableObject.CreateInstance<SkinData>();
+                    skinData.skinID = skinID;
                     skinData.name = name;
                     skinData.skin = Sprite.Create(emptyTexture, new Rect(0, 0, 8, 8), new Vector2(0.5F, 0.5F), 200);
                     emptySkinData.Add(name, skinData);

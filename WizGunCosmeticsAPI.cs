@@ -10,7 +10,7 @@ namespace WizGunCosmeticsAPI
     {
         public const string pluginGuid = "cyantist.wwag.cosmeticsapi";
         public const string pluginName = "Cosmetics API";
-        public const string pluginVersion = "1.1.0";
+        public const string pluginVersion = "1.1.1";
 
         internal static ManualLogSource Log;
 
