@@ -27,7 +27,7 @@ namespace WizGunCosmeticsAPI
 
                     GlamourManager.CreateUnityObjects();
 
-                    AddAssets(GlamourManager.glamours.Select(x => x.gameObject).ToList());
+                    AddAssets(GlamourManager.glamourGameObjects);
 
                     for (int i = 0; i < 9; i++)
                     {
@@ -35,12 +35,12 @@ namespace WizGunCosmeticsAPI
                         yield return __results.Current;
                     }
 
-                    AddAssets(GlamourManager.glamours.Select(x => x.equipment.skinGroup).ToList());
+                    AddAssets(GlamourManager.glamourSkinGroups);
 
                     __results.MoveNext();
                     yield return __results.Current;
 
-                    AddAssets(GlamourManager.glamours.Select(x => x.recipe).ToList<RecipeBase>());
+                    AddAssets(GlamourManager.glamourRecipeBases);
 
                     for (int i = 0; i < 5; i++)
                     {
@@ -51,7 +51,7 @@ namespace WizGunCosmeticsAPI
                     List<Assets<GlamourRecipeCollection>.AssetEntry> assets = Traverse.Create(typeof(Assets<GlamourRecipeCollection>)).Field("_assets").GetValue() as List<Assets<GlamourRecipeCollection>.AssetEntry>;
                     if (assets.First().asset.glamourCollection.Length == 268)
                     {
-                        assets.First().asset.glamourCollection = assets.First().asset.glamourCollection.Concat(GlamourManager.glamours.Select(x => x.recipe)).ToArray();
+                        assets.First().asset.glamourCollection = assets.First().asset.glamourCollection.Concat(GlamourManager.glamourRecipes).ToArray();
                         Traverse.Create(typeof(Assets<GlamourRecipeCollection>)).Field("_assets").SetValue(assets);
                         WizGunCosmeticsAPI.Log.LogInfo("Adjusted GlamourRecipeCollection");
                     }
@@ -67,17 +67,17 @@ namespace WizGunCosmeticsAPI
 
         public static void AddAssets<T>(List<T> newAssets) where T : UnityEngine.Object
         {
-            List <Assets<T>.AssetEntry> assets = Traverse.Create(typeof(Assets<T>)).Field("_assets").GetValue() as List<Assets<T>.AssetEntry>;
+            List<Assets<T>.AssetEntry> assets = Traverse.Create(typeof(Assets<T>)).Field("_assets").GetValue() as List<Assets<T>.AssetEntry>;
             foreach (T asset in newAssets)
             {
                 Assets<T>.AssetEntry entry = default;
                 entry.asset = asset;
-                entry.path = String.Format("CosmeticsMod/{0}/{1}", typeof(T).Name, asset.name);
+                entry.path = string.Format("CosmeticsMod/{0}/{1}", typeof(T).Name, asset.name);
                 if (!assets.Contains(entry))
                 {
                     assets.Add(entry);
 
-                    WizGunCosmeticsAPI.Log.LogInfo(String.Format("Added {0} to Assets<{1}>", asset.name, typeof(T).Name));
+                    WizGunCosmeticsAPI.Log.LogInfo(string.Format("Added {0} to Assets<{1}>", asset.name, typeof(T).Name));
                 }
             }
             Traverse.Create(typeof(Assets<T>)).Field("_assets").SetValue(assets);
@@ -89,13 +89,20 @@ namespace WizGunCosmeticsAPI
             if (___equipOptions != null && ___equipOptions.glamourCollection.Length == 268)
             {
                 WizGunCosmeticsAPI.Log.LogInfo("Patching Equipment Options");
-                ___equipOptions.glamourCollection = ___equipOptions.glamourCollection.Concat(GlamourManager.glamours.Select(x => x.recipe)).ToArray();
+                ___equipOptions.glamourCollection = ___equipOptions.glamourCollection.Concat(GlamourManager.glamourRecipes).ToArray();
             }
         }
 
-        
 
+        public static void postfix_AddEyeOptions(ref PlayerSpawnGameData ____spawnGameData)
+        {
+            if (____spawnGameData.eyeShapeItems != null && ____spawnGameData.eyeShapeItems.Length == 29)
+            {
+                WizGunCosmeticsAPI.Log.LogInfo("Patching Eye Options");
+                ____spawnGameData.eyeShapeItems = ____spawnGameData.eyeShapeItems.Concat(GlamourManager.eyeGameObjects).ToArray();
+            }
+        }
     }
 
-    
+
 }

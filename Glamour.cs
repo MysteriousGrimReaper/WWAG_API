@@ -32,12 +32,15 @@ namespace WizGunCosmeticsAPI
 
         public void CreateUnityObject()
         {
-            gameObject = new GameObject(String.Format("item-{0}-{1}", itemType.ToString().ToLower(), itemCode));
-            item = gameObject.AddComponent<StaticItem>();
+            gameObject = new GameObject(string.Format("item-{0}-{1}", itemType.ToString().ToLower(), itemCode));
             equipment = gameObject.AddComponent<StaticItemEquipmentComponent>();
-            ConfigureItem();
             ConfigureEquipment();
-            recipe.glamour = gameObject;
+            item = gameObject.AddComponent<StaticItem>();
+            ConfigureItem();
+            if (itemType != ItemType.Eyes)
+            {
+                recipe.glamour = gameObject;
+            }
         }
 
         private void ConfigureItem()
@@ -56,7 +59,7 @@ namespace WizGunCosmeticsAPI
 
             SkinGroup skinGroup = ScriptableObject.CreateInstance<SkinGroup>();
             skinGroup.colorSlots = new ColorData[0];
-            skinGroup.name = String.Format("sg-{0}-{1}", itemType.ToString().ToLower(), itemCode);
+            skinGroup.name = string.Format("sg-{0}-{1}", itemType.ToString().ToLower(), itemCode);
             skinGroup.skins = skins.ToArray();
 
             equipment.skinGroup = skinGroup;
@@ -64,11 +67,14 @@ namespace WizGunCosmeticsAPI
 
         private void ConfigureRecipe()
         {
-            recipe = ScriptableObject.CreateInstance<GlamourRecipe>();
-            recipe.name = String.Format("recipe-glamour-{0}-{1}", itemType.ToString().ToLower(), itemCode);
-            recipe.recipeGroup = 6;
-            recipe.requiredArcana = 10;
-            recipe.requirements = new RecipeAssetRequirement[0];
+            if (itemType != ItemType.Eyes)
+            {
+                recipe = ScriptableObject.CreateInstance<GlamourRecipe>();
+                recipe.name = string.Format("recipe-glamour-{0}-{1}", itemType.ToString().ToLower(), itemCode);
+                recipe.recipeGroup = 6;
+                recipe.requiredArcana = 10;
+                recipe.requirements = new RecipeAssetRequirement[0];
+            }
         }
     }
 }
