@@ -20,6 +20,7 @@ namespace WizGunCosmeticsAPI
         internal string itemDescription;
         internal Sprite icon;
         internal List<SkinData> skins = new List<SkinData>();
+        internal List<ColorData> colorSlots = new List<ColorData>();
 
         public Glamour(ItemType itemType, string itemCode, string itemName, string itemDescription)
         {
@@ -61,6 +62,7 @@ namespace WizGunCosmeticsAPI
             skinGroup.colorSlots = new ColorData[0];
             skinGroup.name = string.Format("sg-{0}-{1}", itemType.ToString().ToLower(), itemCode);
             skinGroup.skins = skins.ToArray();
+            skinGroup.colorSlots = colorSlots.ToArray();
 
             equipment.skinGroup = skinGroup;
         }

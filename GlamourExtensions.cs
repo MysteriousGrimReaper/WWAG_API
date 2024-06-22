@@ -44,5 +44,11 @@ namespace WizGunCosmeticsAPI
             glamour.skins.Add(skinData);
             return glamour;
         }
+
+        public static Glamour AddColorSlot(this Glamour glamour, ColorSlot slot, Color color)
+        {
+            glamour.colorSlots.Add(new ColorData() { slot=slot, color=color });
+            return glamour;
+        }
     }
 }

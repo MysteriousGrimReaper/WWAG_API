@@ -1,6 +1,6 @@
 {
   "name": "API",
-  "version_number": "1.1.1",
+  "version_number": "1.2.0",
   "website_url": "https://github.com/ScottWilson0903/WWAG_API",
   "description": "API - Currently only glamours",
   "dependencies": [
