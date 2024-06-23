@@ -86,7 +86,7 @@ namespace WizGunCosmeticsAPI
 
         public static void prefix_AddEquipmentOptions(GlamourRecipeCollection ___equipOptions)
         {
-            if (___equipOptions != null && ___equipOptions.glamourCollection.Length == 268)
+            if (___equipOptions != null && ___equipOptions.glamourCollection.Length == 268 && GlamourManager.glamourRecipes.Count > 0)
             {
                 WizGunCosmeticsAPI.Log.LogInfo("Patching Equipment Options");
                 ___equipOptions.glamourCollection = ___equipOptions.glamourCollection.Concat(GlamourManager.glamourRecipes).ToArray();
@@ -96,7 +96,7 @@ namespace WizGunCosmeticsAPI
 
         public static void postfix_AddEyeOptions(ref PlayerSpawnGameData ____spawnGameData)
         {
-            if (____spawnGameData.eyeShapeItems != null && ____spawnGameData.eyeShapeItems.Length == 29)
+            if (____spawnGameData.eyeShapeItems != null && ____spawnGameData.eyeShapeItems.Length == 29 && GlamourManager.eyeGameObjects.Count > 0)
             {
                 WizGunCosmeticsAPI.Log.LogInfo("Patching Eye Options");
                 ____spawnGameData.eyeShapeItems = ____spawnGameData.eyeShapeItems.Concat(GlamourManager.eyeGameObjects).ToArray();

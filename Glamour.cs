@@ -59,7 +59,6 @@ namespace WizGunCosmeticsAPI
             equipment.itemType = itemType;
 
             SkinGroup skinGroup = ScriptableObject.CreateInstance<SkinGroup>();
-            skinGroup.colorSlots = new ColorData[0];
             skinGroup.name = string.Format("sg-{0}-{1}", itemType.ToString().ToLower(), itemCode);
             skinGroup.skins = skins.ToArray();
             skinGroup.colorSlots = colorSlots.ToArray();

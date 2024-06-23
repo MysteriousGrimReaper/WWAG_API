@@ -24,12 +24,21 @@ namespace WizGunCosmeticsAPI
             string itemType = new Regex(@"[A-Z][a-z]+").Match(skinID.ToString()).Value;
             if (string.IsNullOrEmpty(imgPath))
             {
-                string name = string.Format("skin-{0}-modded-empty-{2}", itemType.ToLower(), Regex.Replace(skinID.ToString().Substring(itemType.Length), "([a-z])([A-Z])", "$1-$2").ToLower());
+                string name = string.Format("skin-{0}-modded-empty-{1}", itemType.ToLower(), Regex.Replace(skinID.ToString().Substring(itemType.Length), "([a-z])([A-Z])", "$1-$2").ToLower());
                 if (!emptySkinData.TryGetValue(name, out skinData))
                 {
+                    Color[] cols = emptyTexture.GetPixels();
+                    for (int i = 0; i < cols.Length; i++)
+                    {
+                        cols[i] = Color.clear;
+                    }
+                    emptyTexture.SetPixels(0, 0, 8, 8, cols);
+                    emptyTexture.Apply();
+
                     skinData = ScriptableObject.CreateInstance<SkinData>();
                     skinData.skinID = skinID;
                     skinData.name = name;
+                    
                     skinData.skin = Sprite.Create(emptyTexture, new Rect(0, 0, 8, 8), new Vector2(0.5F, 0.5F), 200);
                     emptySkinData.Add(name, skinData);
                 }
